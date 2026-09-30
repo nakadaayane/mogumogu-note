@@ -169,6 +169,12 @@ main{position:relative;z-index:1}
   .gacha{grid-column:1/-1;justify-self:center;width:140px}
 }
 
+.quick{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 18px}
+.quick button{display:inline-flex;align-items:center;gap:10px;border:1.5px solid var(--ink);border-radius:999px;padding:6px 16px 6px 6px;background:var(--surface);font-weight:700;font-size:14px;line-height:1.2;transition:transform .3s cubic-bezier(.3,1.8,.5,1),background-color .25s}
+.quick button .emo{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--c);font-size:19px}
+.quick button:hover{transform:translateY(-3px) rotate(-1.5deg);background:color-mix(in srgb,var(--c) 30%,var(--surface))}
+.quick .n{font:500 12px var(--f-latin);color:var(--ink-soft)}
+
 /* ---------- セクション見出し ---------- */
 .sec{padding-block:40px 8px}
 .sec-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px;margin-bottom:22px}
@@ -217,6 +223,8 @@ main{position:relative;z-index:1}
 .res-head h2{margin:0;font:400 clamp(24px,3.2vw,32px)/1.3 var(--f-display)}
 .res-head h2 .num{font:600 1.25em var(--f-latin);margin-right:2px;font-variant-numeric:tabular-nums}
 .res-cond{margin:0;font-size:13px;font-weight:500;color:var(--ink-soft);min-width:0}
+.res-head .view{margin-left:auto}
+@media (max-width:640px){.res-head .view{margin-left:0}}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:30px 22px}
 .card{position:relative;display:flex;flex-direction:column;border-radius:var(--r-md);background:var(--surface);box-shadow:var(--shadow-sm);transition:transform .45s cubic-bezier(.3,1.5,.5,1),box-shadow .3s;animation:rise .6s cubic-bezier(.2,1.3,.4,1) backwards;animation-delay:calc(var(--i,0) * 45ms)}
 @keyframes rise{from{transform:translateY(22px) scale(.96)}to{transform:none}}
@@ -254,6 +262,43 @@ main{position:relative;z-index:1}
 .foot li{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:3px 10px;background:var(--surface-2);font-size:12px;font-weight:700}
 .foot svg{width:13px;height:13px}
 .foot .t{font-family:var(--f-latin);font-weight:600}
+/* 元の投稿（公式の埋め込み） */
+.feed{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px 20px;align-items:start}
+.tile{display:flex;flex-direction:column;border-radius:var(--r-md);background:var(--surface);box-shadow:var(--shadow-sm);overflow:hidden;min-width:0;animation:rise .6s cubic-bezier(.2,1.3,.4,1) backwards;animation-delay:calc(var(--i,0) * 45ms)}
+.post-slot{position:relative;display:grid;place-items:center;min-height:300px;padding:10px;background:color-mix(in srgb,var(--c) 18%,var(--surface));min-width:0}
+.post-slot[data-state="done"]{min-height:0;place-items:stretch;background:var(--surface)}
+.post-slot[data-state="done"] .post-ph,.post-slot[data-state="fail"] .post-ph{display:none}
+.post-box{width:100%;min-width:0}
+.post-box:empty{display:none}
+.post-box iframe{max-width:100%}
+.post-box .twitter-tweet{margin:0 auto!important}
+.post-ph{display:grid;justify-items:center;gap:10px;font-size:12px;font-weight:700;color:var(--ink-soft);text-align:center}
+.post-ph .emo{font-size:60px;animation:objPulse 1.1s ease-in-out infinite alternate}
+.post-art{position:relative;display:grid;place-items:center;width:100%;aspect-ratio:4/3}
+.post-art > svg{position:absolute;width:78%;height:auto;aspect-ratio:1}
+.post-art > svg path{fill:var(--c)}
+.post-art .emo{position:relative;font-size:64px}
+.post-art small{position:absolute;bottom:4px;left:0;right:0;text-align:center;font-size:11.5px;font-weight:700;color:var(--ink-soft)}
+.post-fail{display:grid;justify-items:center;gap:10px;padding:24px 8px;text-align:center}
+.post-fail p{margin:0;font-size:13px;font-weight:700;color:var(--ink-soft)}
+.post-fail a{display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--ink);border-radius:999px;padding:7px 14px;background:var(--surface);font-weight:700;font-size:13px;text-decoration:none}
+.post-fail a svg{width:13px;height:13px}
+.tt-frame{display:block;width:100%;max-width:340px;height:760px;margin:0 auto;border:0;border-radius:12px}
+.yt-lite{position:relative;display:block;width:100%;aspect-ratio:16/9;border:0;padding:0;border-radius:16px;overflow:hidden;background:#000}
+.yt-lite img{display:block;width:100%;height:100%;object-fit:cover}
+.yt-lite .play{position:absolute;left:50%;top:50%;display:grid;place-items:center;width:68px;height:48px;margin:-24px 0 0 -34px;border-radius:14px;background:var(--yt);transition:transform .25s}
+.yt-lite .play::after{content:"";margin-left:4px;border-left:18px solid #fff;border-top:11px solid transparent;border-bottom:11px solid transparent}
+.yt-lite:hover .play{transform:scale(1.1)}
+.yt-frame{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:16px}
+.post-cap{margin:8px 2px 0;font-size:12px;font-weight:500;color:var(--ink-soft)}
+.tile-foot{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;width:100%;border:0;border-top:1.5px dashed var(--line);background:var(--surface);padding:12px 14px;text-align:left}
+.tile-foot .ra{display:grid;place-items:center;width:44px;height:44px;border-radius:14px;background:color-mix(in srgb,var(--c) 45%,var(--surface));font-size:24px}
+.tile-foot b{display:block;font:400 15px/1.4 var(--f-display)}
+.tile-foot small{display:block;margin-top:2px;font-size:11.5px;font-weight:700;color:var(--ink-soft)}
+.tile-foot .go{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--bg);transition:transform .3s cubic-bezier(.3,1.8,.5,1)}
+.tile-foot .go svg{width:14px;height:14px}
+.tile-foot:hover .go{transform:translateX(4px)}
+.feed-note{margin:18px 0 0;font-size:12px;font-weight:500;color:var(--ink-soft)}
 .empty{display:grid;justify-items:center;gap:12px;padding:56px 16px;text-align:center}
 .empty .emo{font-size:56px}
 .empty p{margin:0;max-width:30em;font-weight:500;color:var(--ink-soft)}
@@ -313,6 +358,10 @@ main{position:relative;z-index:1}
 .sh-art .spark.s3{right:22%;bottom:14%;width:22px;height:22px;animation-delay:1.3s}
 @keyframes twinkle{0%,100%{transform:scale(.6) rotate(0);opacity:.5}50%{transform:scale(1) rotate(45deg);opacity:1}}
 .sh-head{display:grid;gap:14px;min-width:0;padding-right:48px}
+.sh-post{display:grid;gap:10px;align-content:start;min-width:0}
+.sh-post .lbl{display:flex;align-items:center;gap:8px;margin:0;font-size:12.5px;font-weight:700;color:var(--ink-soft)}
+.sh-post .post-slot{border-radius:var(--r-lg);min-height:380px}
+.sh-post .post-slot[data-state="done"]{border-radius:0;padding:0}
 .sh-head h2{margin:0;font:400 clamp(26px,3.8vw,40px)/1.3 var(--f-display);letter-spacing:.02em;text-wrap:balance}
 .tags{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
 .tags li{border-radius:999px;padding:3px 11px;background:var(--c);color:var(--on-color);font-size:12px;font-weight:700}
@@ -376,6 +425,7 @@ main{position:relative;z-index:1}
 .note{margin:0;font-size:12px;color:var(--ink-soft);font-weight:500}
 @media (max-width:760px){
   .sh-top,.sh-body{grid-template-columns:1fr}
+  .sh-head{order:1}.sh-post{order:2}
   .sh-art{aspect-ratio:16/10}
   .sh-head{padding-right:0}
   .rel{grid-template-columns:1fr}
@@ -418,6 +468,7 @@ main{position:relative;z-index:1}
           <p class="eyebrow">Recipe note</p>
           <h1 id="heroTitle">もぐもぐノート</h1>
           <p class="lead">X・Instagram・TikTokで話題になったレシピを、おうちで作りやすいように材料と手順をまとめています。元の投稿へのリンクつきです。</p>
+          <div class="quick" id="quick"></div>
           <form class="search" role="search" id="searchForm">
             <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M16 16l4.5 4.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
             <label class="vh" for="q">食材・料理名でさがす</label>
@@ -443,6 +494,7 @@ main{position:relative;z-index:1}
     <section class="sec wrap" id="finder" aria-labelledby="findTitle">
       <div class="sec-head"><p class="eyebrow">Find</p><h2 id="findTitle">レシピをさがす</h2><p>同じ段はどれか1つに合えばOK、段をまたぐと全部に合うものだけ出ます</p></div>
       <div class="finder">
+        <div class="row"><p class="row-lbl" id="lblScene">シーン</p><div class="chips" role="group" aria-labelledby="lblScene" id="chipsScene"></div></div>
         <div class="row"><p class="row-lbl" id="lblCat">カテゴリ</p><div class="chips" role="group" aria-labelledby="lblCat" id="chipsCat"></div></div>
         <div class="row"><p class="row-lbl" id="lblPlat">話題になったSNS</p><div class="chips" role="group" aria-labelledby="lblPlat" id="chipsPlat"></div></div>
         <div class="row"><p class="row-lbl" id="lblTag">かんたん条件</p><div class="chips" role="group" aria-labelledby="lblTag" id="chipsTag"></div></div>
@@ -463,8 +515,11 @@ main{position:relative;z-index:1}
     </section>
 
     <section class="sec wrap" id="results" aria-labelledby="resTitle">
-      <div class="res-head"><h2 id="resTitle"><span class="num" id="resNum">0</span>品</h2><p class="res-cond" id="resCond">すべてのレシピ</p></div>
+      <div class="res-head"><h2 id="resTitle"><span class="num" id="resNum">0</span>品</h2><p class="res-cond" id="resCond">すべてのレシピ</p>
+        <div class="seg view" role="group" aria-label="一覧の見せ方" id="viewSeg"><button type="button" data-view="cards" aria-pressed="true">カード</button><button type="button" data-view="posts" aria-pressed="false">元の投稿の写真</button></div></div>
       <div class="grid" id="grid"></div>
+      <div class="feed" id="feed" hidden></div>
+      <p class="feed-note" id="feedNote" hidden>写真・動画は、各SNSの公式の埋め込み機能で元の投稿をそのまま表示しています。投稿が見つからないレシピは絵で表示しています。</p>
       <div class="empty" id="empty" hidden><span class="emo" aria-hidden="true">🍳</span><p id="emptyMsg">条件に合うレシピが見つかりませんでした。条件を少しゆるめてみてください。</p><button class="pill" type="button" id="emptyClear">条件をクリア</button></div>
     </section>
   </main>
@@ -476,6 +531,7 @@ main{position:relative;z-index:1}
         <h2>このサイトについて</h2>
         <p>X・Instagram・TikTokなどで話題になったレシピを集めたノートです。材料と分量は元の投稿やレシピページで確かめ、作り方は短くまとめ直しています。くわしいコツや写真・動画は、各レシピの「元の投稿を見る」からどうぞ。</p>
         <p>レシピの権利は、それぞれの投稿者さまにあります。お気に入りはこの端末のブラウザにだけ保存されます。</p>
+        <p>写真・動画は、X・Instagram・TikTok・YouTubeの公式の埋め込み機能で元の投稿をそのまま表示しています（このサイトに写真は保存していません）。</p>
         <p class="small">収録 <span id="ftCount">0</span>品 ・ さいごの追加 <span id="ftUpdated"></span></p>
       </div>
     </div>
@@ -515,6 +571,9 @@ main{position:relative;z-index:1}
   const PLATS = ["X", "Instagram", "TikTok", "YouTube"];
   const GENRES = ["和風", "洋風", "中華", "韓国", "エスニック"];
   const QUICK10 = "__10";
+  const SCENES = ["お弁当", "夕ごはん", "ひとりランチ", "朝ごはん", "おやつ", "おつまみ"];
+  const SCENE_C = { お弁当: "butter", 夕ごはん: "peach", ひとりランチ: "soda", 朝ごはん: "mint", おやつ: "berry", おつまみ: "matcha" };
+  const SCENE_E = { お弁当: "🍱", 夕ごはん: "🍽️", ひとりランチ: "🥄", 朝ごはん: "🌞", おやつ: "🧁", おつまみ: "🍻" };
 
   /* ---------- 形をつくる ---------- */
   function rng(a) { return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
@@ -541,11 +600,12 @@ main{position:relative;z-index:1}
   const norm = s => kata2hira(String(s ?? "").normalize("NFKC").toLowerCase()).replace(/\s+/g, "");
   const RAW = Array.isArray(window.RECIPES) ? window.RECIPES : [];
   const DATA = RAW.filter(r => r && r.id && r.title).map((r, i) => {
-    const o = { ...r, _i: i, tags: (r.tags || []).filter(t => !/^\d+分(以内)?$/.test(t)), mainIngredients: r.mainIngredients || [], ingredients: r.ingredients || [], steps: r.steps || [] };
-    o._s = norm([o.title, o.catch, o.creator, o.handle, o.category, o.genre, o.platform, ...o.tags, ...o.mainIngredients, ...o.ingredients.map(x => x.name)].join(" "));
+    const o = { ...r, _i: i, tags: (r.tags || []).filter(t => !/^\d+分(以内)?$/.test(t)), scenes: r.scenes || [], mainIngredients: r.mainIngredients || [], ingredients: r.ingredients || [], steps: r.steps || [] };
+    o._s = norm([o.title, o.catch, o.creator, o.handle, o.category, o.genre, o.platform, ...o.scenes, ...o.tags, ...o.mainIngredients, ...o.ingredients.map(x => x.name)].join(" "));
     return o;
   });
   const byId = new Map(DATA.map(r => [r.id, r]));
+  const scenes = SCENES.filter(s => DATA.some(r => r.scenes.includes(s)));
   const cats = [...CATS.filter(c => DATA.some(r => r.category === c)), ...new Set(DATA.map(r => r.category).filter(c => c && !CATS.includes(c)))];
   const plats = [...PLATS.filter(p => DATA.some(r => r.platform === p)), ...new Set(DATA.map(r => r.platform).filter(p => p && !PLATS.includes(p)))];
   const genres = [...GENRES.filter(g => DATA.some(r => r.genre === g)), ...new Set(DATA.map(r => r.genre).filter(g => g && !GENRES.includes(g)))];
@@ -564,7 +624,9 @@ main{position:relative;z-index:1}
   try { favs = new Set(JSON.parse(localStorage.getItem("mogu-favs") || "[]")); } catch (e) { }
   const saveFavs = () => { try { localStorage.setItem("mogu-favs", JSON.stringify([...favs])); } catch (e) { } };
 
-  const state = { q: "", cats: new Set(), plats: new Set(), genres: new Set(), tags: new Set(), year: null, favOnly: false, sort: "new" };
+  let view = "cards";
+  try { if (localStorage.getItem("mogu-view") === "posts") view = "posts"; } catch (e) { }
+  const state = { q: "", scenes: new Set(), cats: new Set(), plats: new Set(), genres: new Set(), tags: new Set(), year: null, favOnly: false, sort: "new" };
 
   /* ---------- アイコン ---------- */
   const IC = {
@@ -642,6 +704,8 @@ main{position:relative;z-index:1}
 
   /* ---------- 絞り込みのチップ ---------- */
   const chip = (key, val, label, n, c) => `<button class="chip" type="button" data-key="${key}" data-val="${esc(val)}" aria-pressed="false"${c ? ` style="--c:${c}"` : ""}>${c ? '<span class="dot"></span>' : ""}${esc(label)}<span class="n">${n}</span></button>`;
+  $("#chipsScene").innerHTML = scenes.map(s => chip("scenes", s, s, DATA.filter(r => r.scenes.includes(s)).length, `var(--${SCENE_C[s]})`)).join("");
+  $("#quick").innerHTML = ["お弁当", "夕ごはん"].filter(s => scenes.includes(s)).map(s => `<button type="button" data-filter="scenes" data-val="${s}" style="--c:var(--${SCENE_C[s]})"><span class="emo" aria-hidden="true">${SCENE_E[s]}</span>${s === "お弁当" ? "お弁当のおかず" : "夕ごはんのおかず"}<span class="n">${DATA.filter(r => r.scenes.includes(s)).length}</span></button>`).join("");
   $("#chipsCat").innerHTML = cats.map(c => chip("cats", c, c, DATA.filter(r => r.category === c).length, `var(--${CAT_C[c] || "peach"})`)).join("");
   $("#chipsPlat").innerHTML = plats.map(p => chip("plats", p, p, DATA.filter(r => r.platform === p).length, "var(--soda)")).join("");
   const n10 = DATA.filter(r => r.time && r.time <= 10).length;
@@ -662,6 +726,7 @@ main{position:relative;z-index:1}
     kana: (a, b) => a.title.localeCompare(b.title, "ja")
   };
   function matches(r) {
+    if (state.scenes.size && !r.scenes.some(s => state.scenes.has(s))) return false;
     if (state.cats.size && !state.cats.has(r.category)) return false;
     if (state.plats.size && !state.plats.has(r.platform)) return false;
     if (state.genres.size && !state.genres.has(r.genre)) return false;
@@ -677,9 +742,85 @@ main{position:relative;z-index:1}
     }
     return true;
   }
+  /* ---------- 元の投稿（公式の埋め込み） ---------- */
+  function postInfo(url) {
+    if (!url) return null;
+    let m;
+    if ((m = url.match(/(?:x|twitter)\.com\/[^/]+\/status\/(\d+)/))) return { type: "x", id: m[1], url, label: "X" };
+    if ((m = url.match(/instagram\.com\/(?:[^/]+\/)?(p|reel|tv)\/([\w-]+)/))) return { type: "ig", id: m[2], url: `https://www.instagram.com/${m[1]}/${m[2]}/`, label: "Instagram" };
+    if ((m = url.match(/tiktok\.com\/@[^/]+\/video\/(\d+)/))) return { type: "tt", id: m[1], url, label: "TikTok" };
+    if ((m = url.match(/(?:youtube\.com\/(?:watch\?(?:.*&)?v=|shorts\/)|youtu\.be\/)([\w-]{11})/))) return { type: "yt", id: m[1], url, label: "YouTube" };
+    return null;
+  }
+  const LOADERS = {};
+  function loadScript(src) {
+    return LOADERS[src] ||= new Promise((res, rej) => {
+      const el = document.createElement("script");
+      el.src = src; el.async = true; el.charset = "utf-8";
+      el.onload = () => res();
+      el.onerror = () => { delete LOADERS[src]; rej(new Error(src)); };
+      document.head.appendChild(el);
+    });
+  }
+  const isDark = () => { const t = document.documentElement.dataset.theme; return t ? t === "dark" : matchMedia("(prefers-color-scheme: dark)").matches; };
+  const ytThumb = id => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+  const within = (ms, pr) => Promise.race([pr, new Promise((_, rej) => setTimeout(() => rej(new Error("timeout")), ms))]);
+  const phHTML = r => `<div class="post-ph"><span class="emo" aria-hidden="true">${esc(r.emoji || "🍽️")}</span><span>元の投稿を読みこみ中…</span></div>`;
+  async function renderPost(slot, r) {
+    const p = r && postInfo(r.postUrl);
+    if (!p || slot.dataset.state) return;
+    slot.dataset.state = "loading";
+    const box = document.createElement("div");
+    box.className = "post-box";
+    slot.appendChild(box);
+    try {
+      if (p.type === "x") {
+        await within(10000, loadScript("https://platform.twitter.com/widgets.js"));
+        await within(5000, new Promise(res => window.twttr.ready(res)));
+        const el = await within(15000, window.twttr.widgets.createTweet(p.id, box, { lang: "ja", dnt: true, conversation: "none", align: "center", theme: isDark() ? "dark" : "light" }));
+        if (!el) throw new Error("not found");
+      } else if (p.type === "ig") {
+        box.innerHTML = `<blockquote class="instagram-media" data-instgrm-permalink="${esc(p.url)}" data-instgrm-version="14" style="margin:0 auto;width:100%;min-width:260px;max-width:540px;border:0;background:transparent"><a href="${esc(p.url)}" target="_blank" rel="noopener">Instagramで見る</a></blockquote>`;
+        await within(10000, loadScript("https://www.instagram.com/embed.js"));
+        window.instgrm?.Embeds?.process();
+        await new Promise(res => { let n = 0; const t = setInterval(() => { if (box.querySelector("iframe") || ++n > 50) { clearInterval(t); res(); } }, 300); });
+        if (!box.querySelector("iframe")) throw new Error("timeout");
+      } else if (p.type === "tt") {
+        box.innerHTML = `<iframe class="tt-frame" src="https://www.tiktok.com/embed/v2/${p.id}?lang=ja-JP" title="TikTokの元の投稿" allow="encrypted-media; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>`;
+      } else {
+        box.innerHTML = `<button class="yt-lite" type="button" data-yt="${p.id}" aria-label="YouTubeで動画を再生"><img src="${ytThumb(p.id)}" alt="" loading="lazy"><span class="play" aria-hidden="true"></span></button><p class="post-cap">YouTube・${esc(r.creator || "")}さんの動画</p>`;
+      }
+      slot.dataset.state = "done";
+    } catch (e) {
+      slot.dataset.state = "fail";
+      box.innerHTML = `<div class="post-fail"><p>元の投稿を読みこめませんでした</p><a href="${esc(p.url)}" target="_blank" rel="noopener">元の投稿を開く ${IC.out}</a></div>`;
+    }
+  }
+  let postObserver = null;
+  function tileHTML(r, i) {
+    const p = postInfo(r.postUrl);
+    const inner = p ? phHTML(r) : `<div class="post-art">${blobSVG(hash(r.id), 7, .26)}<span class="emo" aria-hidden="true">${esc(r.emoji || "🍽️")}</span><small>元の投稿は出典ページで</small></div>`;
+    return `<article class="tile" style="--c:${color(r)};--i:${Math.min(i, 12)}">
+      <div class="post-slot"${p ? ` data-post="${esc(r.id)}"` : ""}>${inner}</div>
+      <button class="tile-foot" type="button" data-open="${esc(r.id)}"><span class="ra emo" aria-hidden="true">${esc(r.emoji || "🍽️")}</span><span><b>${esc(r.title)}</b><small>${esc(r.category)}・${timeTxt(r)}分</small></span><span class="go">${IC.arr}</span></button>
+    </article>`;
+  }
+  function renderFeed(list) {
+    const feed = $("#feed");
+    const withPost = list.filter(r => postInfo(r.postUrl));
+    feed.innerHTML = [...withPost, ...list.filter(r => !postInfo(r.postUrl))].map(tileHTML).join("");
+    postObserver?.disconnect();
+    postObserver = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return;
+      postObserver.unobserve(e.target);
+      renderPost(e.target, byId.get(e.target.dataset.post));
+    }), { rootMargin: "700px 0px" }) : null;
+    $$(".post-slot[data-post]", feed).forEach(sl => postObserver ? postObserver.observe(sl) : renderPost(sl, byId.get(sl.dataset.post)));
+  }
   function cardHTML(r, i) {
     const h = hash(r.id);
-    const art = r.photo ? `<img src="${esc(r.photo)}" alt="" loading="lazy">` : `${blobSVG(h, 7, .26)}<span class="emo" aria-hidden="true">${esc(r.emoji || "🍽️")}</span>`;
+    const pi = postInfo(r.postUrl);
+    const art = r.photo ? `<img src="${esc(r.photo)}" alt="" loading="lazy">` : pi && pi.type === "yt" ? `<img src="${ytThumb(pi.id)}" alt="" loading="lazy">` : `${blobSVG(h, 7, .26)}<span class="emo" aria-hidden="true">${esc(r.emoji || "🍽️")}</span>`;
     return `<article class="card" style="--c:${color(r)};--i:${Math.min(i, 12)};--d:${(2.3 + (h % 240) / 100).toFixed(2)}s">
       <div class="card-art">${art}${platBadge(r.platform)}${SHOW_NEW && r.added === LATEST ? '<span class="new">NEW</span>' : ""}</div>
       <div class="card-body">
@@ -695,14 +836,20 @@ main{position:relative;z-index:1}
     const parts = [];
     if (state.q) parts.push(`「${state.q}」`);
     const labelOf = t => t === QUICK10 ? "10分以内" : t;
-    [...state.cats, ...state.plats, ...[...state.tags].map(labelOf), ...state.genres].forEach(x => parts.push(x));
+    [...state.scenes, ...state.cats, ...state.plats, ...[...state.tags].map(labelOf), ...state.genres].forEach(x => parts.push(x));
     if (state.year) parts.push(`${state.year}年に話題`);
     if (state.favOnly) parts.push("お気に入り");
     return parts.length ? parts.join("・") + " のレシピ" : "すべてのレシピ";
   }
   function render() {
     const list = DATA.filter(matches).sort(SORTS[state.sort]);
-    $("#grid").innerHTML = list.map(cardHTML).join("");
+    const posts = view === "posts";
+    $("#grid").hidden = posts;
+    $("#feed").hidden = !posts;
+    $("#feedNote").hidden = !posts || !list.length;
+    if (posts) { $("#grid").innerHTML = ""; renderFeed(list); }
+    else { postObserver?.disconnect(); $("#feed").innerHTML = ""; $("#grid").innerHTML = list.map(cardHTML).join(""); }
+    $$("#viewSeg button").forEach(b => b.setAttribute("aria-pressed", b.dataset.view === view));
     $("#resNum").textContent = list.length;
     $("#resCond").textContent = condText();
     const empty = !list.length;
@@ -718,7 +865,7 @@ main{position:relative;z-index:1}
   }
   function clearAll() {
     state.q = ""; $("#q").value = "";
-    ["cats", "plats", "genres", "tags"].forEach(k => state[k].clear());
+    ["scenes", "cats", "plats", "genres", "tags"].forEach(k => state[k].clear());
     state.year = null; state.favOnly = false;
   }
   const toResults = () => $("#results").scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
@@ -742,19 +889,24 @@ main{position:relative;z-index:1}
       items.map(it => `<li class="${g ? "in" : ""}"><span class="nm">${esc(it.name)}</span><span class="am">${esc(it.amount || "")}</span></li>`).join("")).join("");
     const steps = r.steps.map((s, i) => `<li><button class="step" type="button" aria-pressed="false"><span class="no"><span>${i + 1}</span>${IC.check}</span><span class="tx">${esc(s)}</span></button></li>`).join("");
     const art = r.photo ? `<img src="${esc(r.photo)}" alt="${esc(r.title)}">` : `${blobSVG(hash(r.id) + 5, 8, .22)}<span class="emo" aria-hidden="true">${esc(r.emoji || "🍽️")}</span>${IC.star4.replace("SC", "s1")}${IC.star4.replace("SC", "s2")}${IC.star4.replace("SC", "s3")}`;
+    const pi = postInfo(r.postUrl);
+    const srcIsPost = !!postInfo(r.sourceUrl);
+    const left = r.photo || !pi ? `<div class="sh-art">${art}</div>`
+      : `<div class="sh-post"><p class="lbl">${platBadge(pi.label)}元の投稿（写真・動画）</p><div class="post-slot" data-post="${esc(r.id)}">${phHTML(r)}</div></div>`;
     const links = [
-      r.sourceUrl ? `<a href="${esc(r.sourceUrl)}" target="_blank" rel="noopener">元の投稿を見る ${IC.out}</a>` : "",
+      r.sourceUrl ? `<a href="${esc(r.sourceUrl)}" target="_blank" rel="noopener">${srcIsPost ? "元の投稿を見る" : "元のレシピを見る"} ${IC.out}</a>` : "",
+      pi && r.postUrl !== r.sourceUrl && !srcIsPost ? `<a href="${esc(pi.url)}" target="_blank" rel="noopener">${pi.label}の投稿を見る ${IC.out}</a>` : "",
       r.buzzUrl ? `<a href="${esc(r.buzzUrl)}" target="_blank" rel="noopener">話題になった記事 ${IC.out}</a>` : ""
     ].join("");
     const rel = related(r).map(x => `<button type="button" data-open="${esc(x.id)}" style="--c:${color(x)}"><span class="ra emo" aria-hidden="true">${esc(x.emoji || "🍽️")}</span><span><span class="rt">${esc(x.title)}</span><span class="rm">${esc(x.category)}・${timeTxt(x)}分</span></span></button>`).join("");
     const clsBtn = (key, val, label) => `<button type="button" data-filter="${key}" data-val="${esc(val)}">${esc(label ?? val)}</button>`;
     return `<article class="sh" style="--c:${color(r)}">
       <div class="sh-top">
-        <div class="sh-art">${art}</div>
+        ${left}
         <div class="sh-head">
           <p class="meta">${esc(r.category)}${r.genre ? "・" + esc(r.genre) : ""}</p>
           <h2 id="shTitle">${esc(r.title)}</h2>
-          ${r.tags.length ? `<ul class="tags">${r.tags.map(t => `<li>${esc(t)}</li>`).join("")}</ul>` : ""}
+          ${r.scenes.length || r.tags.length ? `<ul class="tags">${[...r.scenes, ...r.tags].map(t => `<li>${esc(t)}</li>`).join("")}</ul>` : ""}
           <p class="catch">${esc(r.catch)}</p>
           <dl class="stats">
             <div><dt>調理時間</dt><dd>${timeTxt(r)}<small>分</small></dd></div>
@@ -778,6 +930,7 @@ main{position:relative;z-index:1}
       </div>
       ${r.tip ? `<aside class="tip"><span class="lbl">コツ</span><p>${esc(r.tip)}</p></aside>` : ""}
       <section class="cls" aria-labelledby="clsT"><h3 id="clsT">このレシピの分類</h3>
+        ${r.scenes.length ? `<div class="cls-row"><span class="k">シーン</span>${r.scenes.map(sc => clsBtn("scenes", sc)).join("")}</div>` : ""}
         <div class="cls-row"><span class="k">カテゴリ</span>${clsBtn("cats", r.category)}</div>
         ${r.mainIngredients.length ? `<div class="cls-row"><span class="k">主な食材</span>${r.mainIngredients.map(m => clsBtn("q", m)).join("")}</div>` : ""}
         ${r.genre ? `<div class="cls-row"><span class="k">ジャンル</span>${clsBtn("genres", r.genre)}</div>` : ""}
@@ -791,6 +944,8 @@ main{position:relative;z-index:1}
     const r = byId.get(id);
     if (!r) return;
     $("#sheetBody").innerHTML = sheetHTML(r);
+    const slot = $("#sheetBody .post-slot[data-post]");
+    if (slot) renderPost(slot, r);
     if (!sheet.open) { sheet.showModal(); document.documentElement.classList.add("lock"); }
     else { sheet.animate?.([{ transform: "translateY(18px)", opacity: .4 }, { transform: "none", opacity: 1 }], { duration: reduced ? 1 : 380, easing: "cubic-bezier(.2,1.2,.35,1)" }); }
     sheet.scrollTop = 0;
@@ -809,7 +964,8 @@ main{position:relative;z-index:1}
   let o = 0;
   const mItem = (attrs, label, n) => `<li style="--o:${o++}"><button type="button" ${attrs}><span class="arr">${IC.arr}</span>${esc(label)}${n != null ? `<span class="n">${n}</span>` : ""}</button></li>`;
   $("#menuNav").innerHTML =
-    `<div><h3>Category</h3><ul>${cats.map(c => mItem(`data-filter="cats" data-val="${esc(c)}"`, c, DATA.filter(r => r.category === c).length)).join("")}</ul></div>` +
+    `<div><h3>Scene</h3><ul>${scenes.map(sc => mItem(`data-filter="scenes" data-val="${esc(sc)}"`, sc, DATA.filter(r => r.scenes.includes(sc)).length)).join("")}</ul>` +
+    `<h3 style="margin-top:22px">Category</h3><ul>${cats.map(c => mItem(`data-filter="cats" data-val="${esc(c)}"`, c, DATA.filter(r => r.category === c).length)).join("")}</ul></div>` +
     `<div><h3>SNS</h3><ul>${plats.map(p => mItem(`data-filter="plats" data-val="${esc(p)}"`, p, DATA.filter(r => r.platform === p).length)).join("")}</ul>` +
     `<h3 style="margin-top:22px">Creators</h3><ul>${creators.slice(0, 8).map(([c, n]) => mItem(`data-filter="q" data-val="${esc(c)}"`, c, n)).join("")}</ul></div>` +
     `<div><h3>More</h3><ul>${mItem('data-act="gacha"', "きょうのごはんガチャ")}${mItem('data-act="fav"', "お気に入り")}${mItem('data-act="years"', "話題になった年")}${mItem('data-act="about"', "このサイトについて")}${mItem('data-act="all"', "すべてのレシピ", DATA.length)}</ul></div>`;
@@ -896,6 +1052,16 @@ main{position:relative;z-index:1}
   document.addEventListener("click", e => {
     const t = e.target.closest("button, a");
     if (!t) return;
+    if (t.dataset.yt) {
+      t.outerHTML = `<iframe class="yt-frame" src="https://www.youtube-nocookie.com/embed/${t.dataset.yt}?autoplay=1&rel=0" title="YouTubeの動画" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+      return;
+    }
+    if (t.dataset.view) {
+      view = t.dataset.view;
+      try { localStorage.setItem("mogu-view", view); } catch (e) { }
+      render();
+      return;
+    }
     if (t.dataset.open) {
       e.preventDefault();
       openRecipe(t.dataset.open);

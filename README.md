@@ -20,9 +20,11 @@ SNS（X・Instagram・TikTok・YouTube）で話題になったレシピを集め
 | platform | X / Instagram / TikTok / YouTube |
 | creator / handle | 投稿者名／@アカウント（分からなければ null） |
 | sourceUrl | 材料・分量を確かめた元の投稿やレシピページ |
+| postUrl | その料理の写真・動画が見えるSNSの投稿そのもののURL（x.com/…/status/…、instagram.com/p/…・/reel/…、tiktok.com/@…/video/…、youtube.com/watch?v=…）。詳しいページと「元の投稿の写真」表示に公式の埋め込みで出る。なければ null |
 | buzzUrl / buzzYear / buzzNote | 話題になったことを伝える記事／年／ひとこと（いいね数は出典にあるときだけ） |
 | category | おかず / 副菜 / ごはんもの / 麺 / パン / スープ / スイーツ / ドリンク |
 | genre | 和風 / 洋風 / 中華 / 韓国 / エスニック |
+| scenes | お弁当 / 夕ごはん / ひとりランチ / 朝ごはん / おやつ / おつまみ（当てはまるものすべて） |
 | time / timeEstimated | 分／出典に時間がなく見積もったら true |
 | servings / tags / mainIngredients | 分量／かんたん条件／主な食材 |
 | ingredients | `{name, amount, group?}` の配列（group は「A」「たれ」など） |
@@ -30,11 +32,11 @@ SNS（X・Instagram・TikTok・YouTube）で話題になったレシピを集め
 | emoji / photo | カードの絵（photo を入れると写真に替わる） |
 | added | 足した日 `yyyy-mm-dd`（add で自動） |
 
-tags は、いまある言葉を使う：レンジだけ・火を使わない・オーブンいらず・包丁いらず・ワンパン・材料5つ以下・混ぜるだけ・冷やすだけ・節約・おつまみ・映え・夜食・作りおき
+tags は、いまある言葉を使う：レンジだけ・火を使わない・オーブンいらず・包丁いらず・ワンパン・材料5つ以下・混ぜるだけ・冷やすだけ・節約・映え・夜食・作りおき
 
 ## 守ること
 
 - 材料・分量は出典で確かめる。推測で埋めない。
-- 作り方は自分の言葉で短く。写真は投稿者のものを勝手に載せない（自分で作って撮った写真ならOK）。
+- 作り方は自分の言葉で短く。投稿者の写真を保存して載せない（写真は postUrl の公式の埋め込みで見せる。自分で作って撮った写真なら photo に入れてOK）。
 - 元の投稿へのリンクを必ず付ける。
 - サイト名・画面の文言に「バズ」は使わない。

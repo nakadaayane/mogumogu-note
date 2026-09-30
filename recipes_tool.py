@@ -18,8 +18,13 @@ HEADER = "// もぐもぐノートのレシピデータ。新しいレシピは�
 CATEGORIES = {"おかず", "副菜", "ごはんもの", "麺", "パン", "スープ", "スイーツ", "ドリンク"}
 GENRES = {"和風", "洋風", "中華", "韓国", "エスニック"}
 PLATFORMS = {"X", "Instagram", "TikTok", "YouTube"}
+SCENES = {"お弁当", "夕ごはん", "ひとりランチ", "朝ごはん", "おやつ", "おつまみ"}
+TAGS = {"レンジだけ", "火を使わない", "オーブンいらず", "包丁いらず", "ワンパン", "材料5つ以下", "混ぜるだけ",
+        "冷やすだけ", "節約", "映え", "夜食", "作りおき"}
+POST_RE = re.compile(r"https://(www\.)?(x\.com/[^/]+/status/\d+|instagram\.com/(p|reel|tv)/[\w-]+|tiktok\.com/@[^/]+/video/\d+"
+                     r"|youtube\.com/(watch\?v=|shorts/)[\w-]{11}|youtu\.be/[\w-]{11})")
 REQUIRED = ["id", "title", "catch", "platform", "creator", "sourceUrl", "buzzYear", "category", "genre",
-            "time", "servings", "ingredients", "steps", "emoji", "added"]
+            "time", "servings", "ingredients", "steps", "emoji", "added", "scenes"]
 
 
 def load():
@@ -60,6 +65,14 @@ def problems(recipes):
             errs.append(f"{who}: genre は {sorted(GENRES)} のどれか")
         if r.get("platform") not in PLATFORMS:
             errs.append(f"{who}: platform は {sorted(PLATFORMS)} のどれか")
+        bad = [x for x in r.get("scenes") or [] if x not in SCENES]
+        if bad:
+            errs.append(f"{who}: scenes は {sorted(SCENES)} から（{bad}）")
+        bad = [x for x in r.get("tags") or [] if x not in TAGS and not re.fullmatch(r"\d+分", x)]
+        if bad:
+            errs.append(f"{who}: tags は README の言葉から（{bad}）")
+        if r.get("postUrl") and not POST_RE.match(str(r["postUrl"])):
+            errs.append(f"{who}: postUrl はSNSの投稿そのもののURL（x.com/…/status/…、instagram.com/p/…、tiktok.com/@…/video/…、youtube.com/watch?v=…）")
         if not isinstance(r.get("time"), int) or r["time"] <= 0:
             errs.append(f"{who}: time は分の整数")
         if not isinstance(r.get("buzzYear"), int) or not 2005 <= r["buzzYear"] <= datetime.date.today().year:
