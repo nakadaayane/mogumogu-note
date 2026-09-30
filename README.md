@@ -2,7 +2,7 @@
 
 SNS（X・Instagram・TikTok・YouTube）で話題になったレシピを集めたレシピサイト。
 
-- 公開ページ：https://nakadaayane.github.io/mogumogu-note/
+- 公開ページ：GitHub Pages（検索よけあり。URLはここに書かない）
 - `index.html` … ページ本体
 - `recipes.js` … レシピデータ。`window.RECIPES = [...]`
 - `recipes_tool.py` … `list`（一覧）／`check`（点検）／`add new.json`（足す）

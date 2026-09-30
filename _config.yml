@@ -1,0 +1,8 @@
+# GitHub Pages で公開しないファイル
+exclude:
+  - README.md
+  - recipes_tool.py
+  - _preview.html
+  - _new.json
+  - .claude
+  - .gitignore
