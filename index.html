@@ -226,7 +226,7 @@ main{position:relative;z-index:1}
 .res-cond{margin:0;font-size:13px;font-weight:500;color:var(--ink-soft);min-width:0}
 .res-head .view{margin-left:auto}
 @media (max-width:640px){.res-head .view{margin-left:0}}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:30px 22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr));gap:30px 22px}
 .card{position:relative;display:flex;flex-direction:column;border-radius:var(--r-md);background:var(--surface);box-shadow:var(--shadow-sm);transition:transform .45s cubic-bezier(.3,1.5,.5,1),box-shadow .3s;animation:rise .6s cubic-bezier(.2,1.3,.4,1) backwards;animation-delay:calc(var(--i,0) * 45ms)}
 @keyframes rise{from{transform:translateY(22px) scale(.96)}to{transform:none}}
 .card:hover{transform:translateY(-7px) rotate(-.5deg);box-shadow:var(--shadow)}
@@ -264,7 +264,7 @@ main{position:relative;z-index:1}
 .foot svg{width:13px;height:13px}
 .foot .t{font-family:var(--f-latin);font-weight:600}
 /* 元の投稿（公式の埋め込み） */
-.feed{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px 20px;align-items:start}
+.feed{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:24px 20px;align-items:start}
 .tile{display:flex;flex-direction:column;border-radius:var(--r-md);background:var(--surface);box-shadow:var(--shadow-sm);overflow:hidden;min-width:0;animation:rise .6s cubic-bezier(.2,1.3,.4,1) backwards;animation-delay:calc(var(--i,0) * 45ms)}
 .post-slot{position:relative;display:grid;place-items:center;min-height:300px;padding:10px;background:color-mix(in srgb,var(--c) 18%,var(--surface));min-width:0}
 .post-slot[data-state="done"]{min-height:0;place-items:stretch;background:var(--surface)}
