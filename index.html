@@ -280,7 +280,7 @@ main{position:relative;z-index:1}
 .post-art > svg path{fill:var(--c)}
 .post-art .emo{position:relative;font-size:64px}
 .post-art small{position:absolute;bottom:4px;left:0;right:0;text-align:center;font-size:11.5px;font-weight:700;color:var(--ink-soft)}
-.post-fail{display:grid;justify-items:center;gap:10px;padding:24px 8px;text-align:center}
+.post-fail{display:grid;justify-items:center;gap:10px;padding:4px 8px 18px;text-align:center}
 .post-fail p{margin:0;font-size:13px;font-weight:700;color:var(--ink-soft)}
 .post-fail a{display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--ink);border-radius:999px;padding:7px 14px;background:var(--surface);font-weight:700;font-size:13px;text-decoration:none}
 .post-fail a svg{width:13px;height:13px}
@@ -794,7 +794,7 @@ main{position:relative;z-index:1}
       slot.dataset.state = "done";
     } catch (e) {
       slot.dataset.state = "fail";
-      box.innerHTML = `<div class="post-fail"><p>元の投稿を読みこめませんでした</p><a href="${esc(p.url)}" target="_blank" rel="noopener">元の投稿を開く ${IC.out}</a></div>`;
+      box.innerHTML = `<div class="post-art">${blobSVG(hash(r.id), 7, .26)}<span class="emo" aria-hidden="true">${esc(r.emoji || "🍽️")}</span></div><div class="post-fail"><p>元の投稿を表示できませんでした（消えたか、読みこみに時間がかかっています）</p><a href="${esc(p.url)}" target="_blank" rel="noopener">元の投稿を開く ${IC.out}</a></div>`;
     }
   }
   let postObserver = null;
