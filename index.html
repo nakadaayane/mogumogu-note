@@ -721,7 +721,7 @@ main{position:relative;z-index:1}
 
   /* ---------- 並べる ---------- */
   const SORTS = {
-    new: (a, b) => (b.added || "").localeCompare(a.added || "") || a._i - b._i,
+    new: (a, b) => (b.added || "").localeCompare(a.added || "") || b._i - a._i,
     time: (a, b) => (a.time || 999) - (b.time || 999) || a._i - b._i,
     year: (a, b) => (b.buzzYear || 0) - (a.buzzYear || 0) || a._i - b._i,
     kana: (a, b) => a.title.localeCompare(b.title, "ja")
